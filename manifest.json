@@ -1,0 +1,255 @@
+{
+  "seed": 1519,
+  "generator": "tests/fixtures/make_practice_batches.py",
+  "source": "synthetic; no base, interview or personal data",
+  "batches": {
+    "practice_valid": {
+      "task": "PBI-47-T01 (#312)",
+      "purpose": "Clean new records with IDs not in the base data. Everything should load.",
+      "planted": {},
+      "expected_cleaner": {
+        "rejected": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "dropped": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "flags": {
+          "flag_refund_exceeds_order": 25
+        }
+      },
+      "expected_pipeline": "accept all rows",
+      "rows": {
+        "customers": 190,
+        "orders": 200,
+        "labels": 200
+      }
+    },
+    "practice_dirty": {
+      "task": "PBI-47-T01 (#312)",
+      "purpose": "New records with known repairable dirty fields (casing, spaces, blanks, token variants, decimal text, three date formats). Repair, never reject.",
+      "planted": {
+        "customers_country_variant": 6,
+        "mobile_mapped": 6,
+        "mobile_unrecognised": 2,
+        "first_order_datetime_missing": 3,
+        "count_as_decimal_text": 4,
+        "collect_type_variant": 6,
+        "collect_type_unknown": 2,
+        "payment_method_missing": 6,
+        "payment_method_variant": 6,
+        "num_items_missing": 1,
+        "order_date_dash_format": 5,
+        "order_date_month_name_format": 5,
+        "labels_country_variant": 4
+      },
+      "expected_cleaner": {
+        "rejected": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "dropped": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "country_code_changed": {
+          "customers": 6,
+          "labels": 4
+        },
+        "mobile_verified_mapped": 6,
+        "payment_method_missing_to_unknown": 6,
+        "missing_kept": {
+          "first_order_datetime": 3,
+          "num_items_ordered": 1
+        },
+        "flags": {
+          "flag_mobile_unrecognised": 2,
+          "flag_collect_unknown": 2,
+          "flag_invalid_order_date": 0,
+          "flag_refund_exceeds_order": 28
+        }
+      },
+      "expected_pipeline": "accept all rows after repair",
+      "rows": {
+        "customers": 190,
+        "orders": 200,
+        "labels": 200
+      }
+    },
+    "practice_missing_column": {
+      "task": "PBI-47-T02 (#313)",
+      "purpose": "Schema failure: orders has no payment_method column and labels has fraud_flag instead of is_fraud.",
+      "planted": {
+        "orders_missing_column": "payment_method",
+        "labels_missing_column": "is_fraud"
+      },
+      "expected_cleaner": "FatalBatchError naming both problems; nothing cleaned",
+      "expected_pipeline": "reject the whole batch before any database write; RDS unchanged",
+      "rows": {
+        "customers": 19,
+        "orders": 20,
+        "labels": 20
+      }
+    },
+    "practice_invalid_rows": {
+      "task": "PBI-47-T02 (#313)",
+      "purpose": "Row-level problems: blank keys, invalid fraud labels, a label with no customer_id, a conflicting duplicate label, plus a non-number, a negative refund and an impossible date.",
+      "planted": {
+        "customers_blank_customer_id": 1,
+        "orders_blank_order_id": 2,
+        "labels_invalid_is_fraud": 3,
+        "labels_blank_customer_id": 1,
+        "labels_conflicting_duplicate_pairs": 1,
+        "orders_non_numeric_order_value": 1,
+        "orders_negative_refund_value": 1,
+        "orders_invalid_order_date": 1
+      },
+      "expected_cleaner": {
+        "rejected": {
+          "customers": 1,
+          "orders": 2,
+          "labels": 6
+        },
+        "dropped": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "flags": {
+          "flag_invalid_number": 1,
+          "flag_negative_number": 1,
+          "flag_invalid_order_date": 1,
+          "flag_refund_exceeds_order": 15
+        },
+        "note": "labels rejected = 3 invalid is_fraud + 1 blank customer_id + 2 rows of the conflicting pair; is_fraud is never filled in"
+      },
+      "expected_pipeline": "load the valid rows, write rejected rows with reasons, never invent labels",
+      "rows": {
+        "customers": 95,
+        "orders": 100,
+        "labels": 101
+      }
+    },
+    "practice_unmatched": {
+      "task": "PBI-47-T02 (#313)",
+      "purpose": "Unmatched keys under the PBI-01 composite keys: orders without labels, labels without orders, labels whose customer row is absent, and one label whose country differs from its order (same order_id, different country).",
+      "planted": {
+        "orders_label_removed": 5,
+        "labels_for_missing_orders": 4,
+        "labels_customer_removed": 3,
+        "labels_country_mismatch": 1
+      },
+      "expected_cleaner": {
+        "rejected": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "dropped": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "note": "orphans are valid rows; the cleaner keeps them"
+      },
+      "expected_joins": {
+        "orders_without_labels": 6,
+        "labels_without_orders": 5,
+        "labels_without_customers": 4
+      },
+      "expected_pipeline": "load all rows, count and report orphans, exclude unlabelled orders from labelled training (PBI-02 orphan rule)",
+      "rows": {
+        "customers": 92,
+        "orders": 100,
+        "labels": 99
+      }
+    },
+    "practice_repeat": {
+      "task": "PBI-47-T02 (#313)",
+      "purpose": "Resubmits 50 orders (with their labels and customers) exactly as they appear in practice_valid, adds 20 new orders, and repeats 2 new order rows inside the file.",
+      "planted": {
+        "orders_already_in_practice_valid": 50,
+        "customers_already_in_practice_valid": 49,
+        "new_orders": 20,
+        "new_customers": 19,
+        "exact_duplicate_order_rows_in_file": 2
+      },
+      "expected_cleaner": {
+        "rejected": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "dropped": {
+          "customers": 0,
+          "orders": 2,
+          "labels": 0
+        },
+        "flags": {
+          "flag_refund_exceeds_order": 12
+        }
+      },
+      "expected_pipeline": "load after practice_valid: skip the 50 orders/labels and 49 customers already stored, insert only the 20 new orders and their labels and customers; a second run of the same batch inserts nothing",
+      "rows": {
+        "customers": 68,
+        "orders": 72,
+        "labels": 70
+      }
+    },
+    "practice_perf": {
+      "task": "PBI-47-T03 (#314)",
+      "purpose": "About 2% of the base size with base-like proportions of each repairable issue, for timing the pipeline (PBI-33b, PBI-34, PBI-39; 3-minute limit).",
+      "planted": {
+        "customers_country_variant": 8,
+        "mobile_mapped": 3,
+        "mobile_unrecognised": 0,
+        "first_order_datetime_missing": 15,
+        "collect_type_variant": 2,
+        "collect_type_unknown": 0,
+        "payment_method_missing": 453,
+        "payment_method_variant": 6,
+        "num_items_missing": 1,
+        "order_date_dash_format": 4,
+        "order_date_month_name_format": 11,
+        "labels_country_variant": 6
+      },
+      "expected_cleaner": {
+        "rejected": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "dropped": {
+          "customers": 0,
+          "orders": 0,
+          "labels": 0
+        },
+        "country_code_changed": {
+          "customers": 8,
+          "labels": 6
+        },
+        "mobile_verified_mapped": 3,
+        "payment_method_missing_to_unknown": 453,
+        "missing_kept": {
+          "first_order_datetime": 15,
+          "num_items_ordered": 1
+        },
+        "flags": {
+          "flag_refund_exceeds_order": 3417
+        }
+      },
+      "expected_pipeline": "accept all rows after repair; record the run time",
+      "rows": {
+        "customers": 19048,
+        "orders": 20000,
+        "labels": 20000
+      }
+    }
+  }
+}

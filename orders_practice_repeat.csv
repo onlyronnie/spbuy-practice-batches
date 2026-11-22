@@ -1,0 +1,73 @@
+country_code,order_id,collect_type,payment_method,order_value,num_items_ordered,refund_value,order_date
+PK,b4eb7763db,Delivery,payment on Delivery,5.9559,1.0,4.11,2023/05/16
+TH,2c5056c785,Delivery,online banking,5.9334,2.0,2.94,2023/05/18
+PK,28a4db6d81,Delivery,payment on Delivery,2.8958,2.0,1.35,2023/05/16
+PH,ef878261f4,Delivery,payment on Delivery,2.4346,1.0,2.71,2023/05/14
+PH,fa3790aedf,Delivery,payment on Delivery,6.5308,2.0,0.0,2023/05/13
+PH,f4f35c2104,Delivery,cybersource,2.9735,7.0,3.88,2023/05/17
+PH,e6e142230a,Delivery,payment on Delivery,1.7338,2.0,1.62,2023/05/16
+MY,7b6f011c6d,pickup,payment on Delivery,3.4515,1.0,0.0,2023/05/18
+PH,0eb06ddc42,Delivery,generic creditcard,5.9793,2.0,0.0,2023/05/13
+PK,0fac3ac395,Delivery,payment on Delivery,5.7289,2.0,0.0,2023/05/13
+TH,00587b6aac,Delivery,generic creditcard,4.6857,1.0,0.0,2023/05/18
+MY,f128efacda,Delivery,payment on Delivery,5.761,1.0,2.92,2023/05/17
+MY,c9b5f4b8c1,Delivery,online banking,3.568,2.0,6.07,2023/05/18
+PH,b72680fbc0,Delivery,generic creditcard,3.9072,2.0,0.0,2023/05/13
+MY,7f5344ddef,Delivery,cybersource,24.508,2.0,7.92,2023/05/15
+PH,bae796902e,Delivery,payment on Delivery,1.7385,1.0,1.03,2023/05/13
+BD,dde953c5c3,Delivery,antfinancial bkash,2.9687,5.0,1.43,2023/05/18
+MY,517ca9214a,Delivery,payment on Delivery,3.6726,5.0,0.0,2023/05/14
+PH,644e9ed0a4,Delivery,credit card,2.3291,5.0,1.14,2023/05/18
+MY,2582948bac,Delivery,payment on Delivery,2.4685,1.0,2.05,2023/05/14
+TH,50d0d17cd8,Delivery,cybersource,3.518,4.0,1.47,2023/05/17
+PK,3810b3228a,Delivery,credit card,9.5297,1.0,0.0,2023/05/18
+PH,0dab7ab98e,pickup,antfinancial gcash,4.0111,1.0,0.0,2023/05/13
+PH,d5e2d27ba3,Delivery,cybersource,6.1354,1.0,0.7,2023/05/16
+MY,e2a76de2e5,Delivery,payment on Delivery,1.751,1.0,0.89,2023/05/17
+BD,97972ea9f6,Delivery,antfinancial bkash,6.3208,1.0,0.0,2023/05/17
+PK,d1e6f74a31,Delivery,jazzcash wallet,4.0163,1.0,1.05,2023/05/15
+MY,67b43a511c,Delivery,payment on Delivery,6.1284,2.0,1.29,2023/05/17
+BD,7464528191,Delivery,payment on Delivery,10.1023,3.0,4.82,2023/05/17
+PH,d656043909,Delivery,payment on Delivery,9.7948,1.0,3.3,2023/05/12
+MY,d1e883b819,Delivery,cybersource,11.9316,4.0,0.0,2023/05/17
+MY,84e97efa4b,Delivery,online banking,11.5137,1.0,0.0,2023/05/16
+PH,3e7061515b,Delivery,antfinancial gcash,4.252,5.0,0.0,2023/05/16
+MY,16e1c1591f,Delivery,payment on Delivery,7.1457,1.0,9.02,2023/05/18
+MY,6f086dc523,Delivery,credit card,3.965,4.0,0.0,2023/05/16
+PK,e929e1e190,Delivery,credit card,5.6917,1.0,2.53,2023/05/18
+PH,bb63d66f0c,Delivery,payment on Delivery,3.667,4.0,1.88,2023/05/17
+MY,20b58602b1,Delivery,payment on Delivery,3.0967,2.0,6.57,2023/05/17
+BD,1e303296c9,Delivery,credit card,2.2,3.0,1.59,2023/05/15
+MY,ca42af3e4f,Delivery,credit card,10.2271,3.0,1.95,2023/05/13
+MY,e6d4007c32,Delivery,payment on Delivery,6.1919,3.0,0.0,2023/05/14
+TH,2d30e9dd66,Delivery,payment on Delivery,6.3431,1.0,0.0,2023/05/17
+PK,5decbed73d,Delivery,cybersource,0.6809,2.0,0.0,2023/05/12
+PH,e55c1c729a,Delivery,antfinancial gcash,5.0998,1.0,2.45,2023/05/14
+PK,095734c053,Delivery,payment on Delivery,3.0311,2.0,0.0,2023/05/15
+BD,54a765de26,Delivery,payment on Delivery,10.78,2.0,0.0,2023/05/14
+MY,d6168eadc2,Delivery,payment on Delivery,1.0851,4.0,0.46,2023/05/14
+MY,d98816b52d,Delivery,online banking,4.5077,3.0,11.16,2023/05/13
+BD,07c5e3131e,Delivery,payment on Delivery,4.2036,3.0,6.74,2023/05/15
+BD,f374ffe485,Delivery,antfinancial bkash,3.6916,5.0,0.0,2023/05/16
+MY,b57d025cf0,Delivery,payment on Delivery,2.2707,2.0,2.25,2023/06/01
+PK,dec6d8bcc5,Delivery,online banking,5.3439,1.0,0.0,2023/06/01
+MY,abd5b91e2d,Delivery,payment on Delivery,7.9139,1.0,18.16,2023/06/02
+BD,acf9c712c1,Delivery,payment on Delivery,12.6276,3.0,0.0,2023/06/01
+PK,878702204c,Delivery,payment on Delivery,16.1942,2.0,0.0,2023/06/03
+MY,dca0c1c5f4,Delivery,online banking,3.933,3.0,1.44,2023/06/03
+PH,9370e804e3,Delivery,cybersource,4.5573,3.0,0.0,2023/06/01
+PK,6a5822b450,Delivery,cybersource,9.3311,4.0,4.09,2023/06/03
+PH,ae1eea29b7,Delivery,antfinancial gcash,1.589,5.0,0.0,2023/06/01
+MY,aee5c34e51,Delivery,generic creditcard,3.9654,2.0,0.0,2023/06/03
+PK,3328f6a6a2,Delivery,generic creditcard,4.8854,1.0,5.61,2023/06/01
+BD,54ce7ac3d9,Delivery,payment on Delivery,17.8439,2.0,25.56,2023/06/01
+TH,755801a4bb,Delivery,online banking,10.9374,1.0,10.08,2023/06/03
+MY,8cfd25674e,Delivery,payment on Delivery,3.0199,1.0,4.74,2023/06/03
+PK,1a078dbee8,Delivery,online banking,8.5257,1.0,0.0,2023/06/01
+BD,0cd0a60a16,Delivery,payment on Delivery,5.9743,1.0,0.0,2023/06/01
+PK,eaaaa1c89f,Delivery,payment on Delivery,5.3434,4.0,1.04,2023/06/02
+PH,e987deb95a,Delivery,payment on Delivery,10.2282,2.0,6.44,2023/06/01
+PH,9deef90dab,Delivery,online banking,6.8588,1.0,14.54,2023/06/03
+PH,1a61040ffd,Delivery,antfinancial gcash,5.2013,1.0,2.3,2023/06/02
+MY,b57d025cf0,Delivery,payment on Delivery,2.2707,2.0,2.25,2023/06/01
+PK,dec6d8bcc5,Delivery,online banking,5.3439,1.0,0.0,2023/06/01
